@@ -1,1 +1,43 @@
-"ncSOS - An OGC SOS Plugin for THREDDS" 
+<h1>ncSOS - An OGC SOS Plugin for THREDDS</h1>
+
+
+<b>Description</b>
+<p>ncSOS adds a new OGC SOS service type to your existing THREDDS server.</p>
+
+<b>Instructions</b>
+<ol>
+  <li>Extract ncSOS zip into a local directory</li>
+  <li>Copy the ncSOS.jar into the thredds/WEB-INF/lib directory.</li>
+   <li>Copy the sos-servlet.xml configuration file into the thredds/WEB-INF/ directory.</li>
+   <li>Add new servlet mappings to thredds/WEB-INF/web.xml with the following:
+    <pre>
+      &lt;!-- sos service --&gt;
+      &lt;servlet&gt;
+        &lt;servlet-name&gt;sos&lt;/servlet-name&gt;
+        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;
+        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;
+      &lt;/servlet&gt;
+
+      &lt;servlet-mapping&gt;
+        &lt;servlet-name&gt;sos&lt;/servlet-name&gt;
+        &lt;url-pattern&gt;/sos/*&lt;/url-pattern&gt;
+      &lt;/servlet-mapping&gt;
+      </pre>
+  </li>
+  <li>Add the following service definition to enable SOS in your THREDDS catalog XML files:
+    <pre>
+      &lt;service name="sos" serviceType="SOS" base="/thredds/sos/" /&gt;
+    </pre>
+  </li>
+  <li>Restart the web application server.</li>
+</ol>
+
+<b>Development Plan</b>
+<p>Currently, ncSOS only works with a subset of the CF Discrete Sampling Geometries.  The plan is to expand support for all of these formats and later add support for Grid feature types.</p>
+
+<b>Other</b>
+<ul>
+  <li>Code: <a href="https://github.com/asascience-open/ncSOS">https://github.com/asascience-open/ncSOS</a></li>
+  <li>Issues: <a href="https://github.com/asascience-open/ncSOS/issues">https://github.com/asascience-open/ncSOS/issues</a></li>
+  <li>Wiki: <a href="https://github.com/asascience-open/ncSOS/wiki">https://github.com/asascience-open/ncSOS/wiki</a></li>
+</ul>
